@@ -107,6 +107,20 @@ export const iconRegistry = {
   slack: require("../../assets/icons/slack.png"),
   view: require("../../assets/icons/view.png"),
   x: require("../../assets/icons/x.png"),
+  wallet: require("../../assets/icons/wallet.png"),
+  card: require("../../assets/icons/card.png"),
+  analytics: require("../../assets/icons/analytics.png"),
+  payments: require("../../assets/icons/payments.png"),
+  gearButton: require("../../assets/icons/gearbutton.png"),
+  dots: require("../../assets/icons/dots.png"),
+  paginationInactive: require("../../assets/icons/inactive.png"),
+  paginationActive: require("../../assets/icons/active.png"),
+  filter: require("../../assets/icons/filter.png"),
+  travel: require("../../assets/icons/travel.png"),
+  taxi: require("../../assets/icons/taxi.png"),
+  restaurant: require("../../assets/icons/restaurant.png"),
+  business: require("../../assets/icons/business.png"),
+  personal: require("../../assets/icons/personal.png")
 }
 
 const $imageStyle: ImageStyle = {
