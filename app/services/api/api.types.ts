@@ -2,6 +2,29 @@
  * These types indicate the shape of the data you expect to receive from your
  * API endpoint, assuming it's a JSON object like we have.
  */
+
+export interface Transaction {
+  name: string
+  date: string
+  amount: string
+  paymentType: string
+  isPositive: boolean
+  purpose: string
+}
+
+export interface Account {
+  accountId: string
+  balance: {
+    usd: string
+    euro: string
+    gbp: string
+  }
+  transactions: Transaction[]
+}
+
+export interface Accounts {
+  accounts: Account[]
+}
 export interface EpisodeItem {
   title: string
   pubDate: string
