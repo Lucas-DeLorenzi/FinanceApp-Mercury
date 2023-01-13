@@ -56,6 +56,7 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
 function $container(colors) {
   const $container: ViewStyle = {
     maxHeight: "48%",
+    height: "48%",
     marginHorizontal: spacing.small,
     marginVertical: spacing.small,
     paddingHorizontal: spacing.extraMedium,
