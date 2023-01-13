@@ -74,6 +74,7 @@ export interface ButtonProps extends PressableProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Button.md)
  */
 export function Button(props: ButtonProps) {
+  
   const {
     tx,
     text,
@@ -152,33 +153,53 @@ const $viewPresets = {
     $baseViewStyle,
     {
       borderWidth: 1,
-      borderColor: colors.palette.neutral400,
-      backgroundColor: colors.palette.neutral100,
+      borderColor: colors.palette.orange100,
+      backgroundColor: colors.palette.orange100,
     },
   ] as StyleProp<ViewStyle>,
 
-  filled: [$baseViewStyle, { backgroundColor: colors.palette.neutral300 }] as StyleProp<ViewStyle>,
+  filled: [$baseViewStyle, { backgroundColor: colors.palette.orange100 }] as StyleProp<ViewStyle>,
 
-  reversed: [
+  reversed: [$baseViewStyle, { backgroundColor: colors.palette.orange100 }] as StyleProp<ViewStyle>,
+
+  currencyButton: [
     $baseViewStyle,
-    { backgroundColor: colors.palette.neutral800 },
+    {
+      backgroundColor: colors.palette.light200,
+      width: 45,
+      minHeight: 25,
+      height: 25,
+      paddingHorizontal: 0,
+      paddingVertical: 0,
+      borderRadius: 8,
+    },
   ] as StyleProp<ViewStyle>,
 }
 
 const $textPresets: Record<Presets, StyleProp<TextStyle>> = {
   default: $baseTextStyle,
   filled: $baseTextStyle,
-  reversed: [$baseTextStyle, { color: colors.palette.neutral100 }],
+  reversed: [$baseTextStyle, { color: colors.palette.orange100 }],
+  currencyButton: [
+    $baseTextStyle,
+    {
+      color: colors.darkText,
+      fontFamily: typography.fonts.montserrat.semiBold,
+      fontSize: spacing.small,
+    },
+  ] as StyleProp<ViewStyle>,
 }
 
 const $pressedViewPresets: Record<Presets, StyleProp<ViewStyle>> = {
-  default: { backgroundColor: colors.palette.neutral200 },
-  filled: { backgroundColor: colors.palette.neutral400 },
-  reversed: { backgroundColor: colors.palette.neutral700 },
+  default: { backgroundColor: colors.palette.orange200, borderColor: colors.palette.orange200 },
+  filled: { backgroundColor: colors.palette.orange200 },
+  reversed: { backgroundColor: colors.palette.orange200 },
+  currencyButton: { backgroundColor: colors.background } as StyleProp<ViewStyle>,
 }
 
 const $pressedTextPresets: Record<Presets, StyleProp<TextStyle>> = {
   default: { opacity: 0.9 },
   filled: { opacity: 0.9 },
   reversed: { opacity: 0.9 },
+  currencyButton: { opacity: 0.9, color: colors.text },
 }
