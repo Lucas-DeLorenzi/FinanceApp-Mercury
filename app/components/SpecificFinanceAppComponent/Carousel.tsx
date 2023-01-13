@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite"
 import { AccountCard } from "./AccountCard"
 import { Icon } from "../Icon"
 import { spacing } from "../../theme"
+import { Account } from "../../services/api"
 
 const SCREEN_WIDTH = Dimensions.get("window").width
 const ACCOUNT_CARD_WIDTH = SCREEN_WIDTH * 0.88
@@ -11,7 +12,7 @@ const CARD_HORIZONTAL_MARGIN = 10
 const CARD_OFFSET_RANGE = ACCOUNT_CARD_WIDTH + CARD_HORIZONTAL_MARGIN * 2
 
 export interface CarouselProps {
-  data: any
+  data: Array<Account>
   style?: StyleProp<ViewStyle>
 }
 
@@ -33,7 +34,7 @@ export const Carousel = observer(function Carousel(props: CarouselProps) {
   return (
     <View style={$styles}>
       <View style={$pagination}>
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <Icon
               key={item.accountId}

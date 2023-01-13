@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { observer } from "mobx-react-lite"
 import { TextStyle, ViewStyle } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
@@ -9,12 +9,18 @@ import { NavigationBar } from "../components/NavigationBar"
 import { typography } from "../theme/typography"
 import { colors as themeColors } from "../theme"
 import { RecentTransactionsPanel } from "../components/SpecificFinanceAppComponent/RecentTransactionsPanel"
-import { accounts } from "../services/api/mockData"
+import { Account, getAllAccounts } from "../services/api"
+import { Loading } from "../components/Loading"
 
 export const AccountHistoryScreen: FC<StackScreenProps<AppStackScreenProps<"AccountHistory">>> =
   observer(function AccountHistoryScreen() {
     const { colors } = useTheme()
     const navigation = useNavigation()
+    const [accounts, setAccounts] = useState<Array<Account>>()
+
+    useEffect(() => {
+      getAllAccounts().then((response) => setAccounts(response.data.accounts))
+    }, [])
 
     return (
       <Screen style={$root(colors)} preset="auto" contentContainerStyle={$screenContainer}>
@@ -24,8 +30,14 @@ export const AccountHistoryScreen: FC<StackScreenProps<AppStackScreenProps<"Acco
           rightIcon={"gearButton"}
           onRightPress={() => null}
         />
-        <Carousel data={accounts} />
-        <RecentTransactionsPanel transactionsData={accounts[0].transactions} />
+        {accounts ? (
+          <>
+            <Carousel data={accounts} />
+            <RecentTransactionsPanel transactionsData={accounts[0]?.transactions} />
+          </>
+        ) : (
+          <Loading style={$loadingContainer} />
+        )}
         <ScreenFooter style={$footerContainer}>
           <NavigationBar style={$navigationBar(colors)}>
             <Icon icon="wallet" onPress={() => null} />
@@ -56,7 +68,7 @@ const $screenContainer: ViewStyle = {
 }
 
 const $footerContainer: ViewStyle = {
-  height:"12%",
+  height: "12%",
 }
 
 function $navigationBar(colors) {
@@ -65,11 +77,17 @@ function $navigationBar(colors) {
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     backgroundColor: colors.card,
-    paddingBottom:"4%"
+    paddingBottom: "4%",
   }
   return $navigationBar
 }
 
 const $headerTitle: TextStyle = {
   fontFamily: typography.fonts.montserrat.semiBold,
+}
+
+const $loadingContainer: ViewStyle = {
+  justifyContent: "center",
+  alignItems: "center",
+  height: "76%",
 }

@@ -41,7 +41,7 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
         </Button>
       </PanelLayoutHeader>
       <PanelLayoutMain style={$panelLayoutMain}>
-        {transactionsData.map((transaction, index) => (
+        {transactionsData?.map((transaction, index) => (
           <Transaction
             key={transaction.name}
             transactionData={transaction}
