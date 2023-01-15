@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native"
+import { ImageStyle, StyleProp, TextStyle, ViewStyle, Dimensions } from "react-native"
 import { observer } from "mobx-react-lite"
 import { colors as themeColors, spacing, typography } from "../../theme"
 import { Text } from "../Text"
@@ -8,6 +8,10 @@ import { Button } from "../Button"
 import { Icon } from "../Icon"
 import { useTheme } from "@react-navigation/native"
 import { Transaction } from "./Transaction"
+
+const SCREEN_WIDTH = Dimensions.get("window").width
+const SCREEN_HORIZONTAL_MARGIN = spacing.small * 2
+const PANEL_WIDTH = SCREEN_WIDTH - SCREEN_HORIZONTAL_MARGIN
 
 export interface RecentTransactionsPanelProps {
   transactionsData: any
@@ -20,7 +24,7 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
   const { colors } = useTheme()
 
   const { style, transactionsData } = props
-  const $styles = [$container(colors), style]
+  const $styles = [$panelContainer(colors), style]
 
   return (
     <Panel
@@ -53,11 +57,11 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
   )
 })
 
-function $container(colors) {
+function $panelContainer(colors) {
   const $container: ViewStyle = {
-    maxHeight: "48%",
-    height: "48%",
-    marginHorizontal: spacing.small,
+    flex:1,
+    minHeight: "20%",
+    width:PANEL_WIDTH,
     marginVertical: spacing.small,
     paddingHorizontal: spacing.extraMedium,
     paddingTop: spacing.extraMedium,
@@ -68,7 +72,9 @@ function $container(colors) {
   return $container
 }
 
-const $contentContainerStyle: ViewStyle = {}
+const $contentContainerStyle: ViewStyle = {
+  maxWidth:"100%",
+}
 
 const $header: ViewStyle = {
   justifyContent: "space-between",

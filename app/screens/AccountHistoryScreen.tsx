@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite"
 import { TextStyle, ViewStyle } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
-import { Header, Screen, ScreenFooter, Carousel, Icon } from "../components"
+import { Header, Screen, ScreenMain, ScreenFooter, Carousel, Icon } from "../components"
 import { useNavigation, useTheme } from "@react-navigation/native"
 import { NavigationBar } from "../components/NavigationBar"
 import { typography } from "../theme/typography"
@@ -31,10 +31,10 @@ export const AccountHistoryScreen: FC<StackScreenProps<AppStackScreenProps<"Acco
           onRightPress={() => null}
         />
         {accounts ? (
-          <>
+          <ScreenMain style={$screenMainContainer}>
             <Carousel data={accounts} />
             <RecentTransactionsPanel transactionsData={accounts[0]?.transactions} />
-          </>
+          </ScreenMain>
         ) : (
           <Loading style={$loadingContainer} />
         )}
@@ -68,7 +68,7 @@ const $screenContainer: ViewStyle = {
 }
 
 const $footerContainer: ViewStyle = {
-  height: "12%",
+  maxHeight: "12%",
 }
 
 function $navigationBar(colors) {
@@ -89,5 +89,10 @@ const $headerTitle: TextStyle = {
 const $loadingContainer: ViewStyle = {
   justifyContent: "center",
   alignItems: "center",
+  height: "76%",
+}
+
+const $screenMainContainer: ViewStyle={
+  flexDirection:"column",
   height: "76%",
 }

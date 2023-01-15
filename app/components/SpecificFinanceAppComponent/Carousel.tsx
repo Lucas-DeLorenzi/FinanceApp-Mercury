@@ -61,7 +61,7 @@ export const Carousel = observer(function Carousel(props: CarouselProps) {
 })
 
 const $carouselContainer: ViewStyle={
-  height:"28%",
+  flex:1,
   paddingHorizontal: spacing.micro,
   marginRight: spacing.tiny,
 
