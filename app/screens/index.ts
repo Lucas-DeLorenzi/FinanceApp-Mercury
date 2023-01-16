@@ -1,3 +1,7 @@
-export * from "./WelcomeScreen"
 export * from "./ErrorScreen/ErrorBoundary"
-// export other screens here
+export * from "./AccountHistoryScreen"
+export * from "./CardsScreen"
+export * from "./DashBoardScreen"
+export * from "./PaymentsScreen"
+export * from "./SettingsScreen"
+export * from "./AllTransactionsScreen"
