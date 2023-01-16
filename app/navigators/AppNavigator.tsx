@@ -4,21 +4,20 @@
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
  * and a "main" flow which the user will use once logged in.
  */
-import {
-  NavigationContainer,
-} from "@react-navigation/native"
+import { NavigationContainer, NavigatorScreenParams } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
 import React from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
+import { DemoTabParamList, TabNavigator } from "./TabNavigator"
 // import {
 //   WelcomeScreen,
 // } from "../screens"
-import { AccountHistoryScreen } from "../screens/AccountHistoryScreen"
 import { DarkThemeColors, DefaultThemeColors } from "../theme"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
+import { AllTransactionsScreen, SettingsScreen } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -34,8 +33,13 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  Welcome: undefined
+  Main: NavigatorScreenParams<DemoTabParamList>
   AccountHistory: undefined
+  DashBoard: undefined
+  Cards: undefined
+  Payments: undefined
+  Settings: undefined
+  AllTransactions: undefined
   // 🔥 Your screens go here
 }
 
@@ -55,12 +59,10 @@ const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-    >
-          {/* <Stack.Screen name="Welcome" component={WelcomeScreen} /> */}
-          <Stack.Screen name="AccountHistory" component={AccountHistoryScreen} />
-      {/** 🔥 Your screens go here */}
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Main" component={TabNavigator} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="AllTransactions" component={AllTransactionsScreen} />
     </Stack.Navigator>
   )
 })
