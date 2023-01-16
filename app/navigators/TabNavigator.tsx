@@ -31,6 +31,7 @@ export function TabNavigator() {
 
   return (
     <Tab.Navigator
+      initialRouteName="AccountHistory"
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
