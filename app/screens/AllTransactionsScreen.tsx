@@ -5,20 +5,26 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Header, Screen } from "../components"
 import { typography } from "../theme"
+import { useTheme } from "@react-navigation/native"
 
 export const AllTransactionsScreen: FC<StackScreenProps<AppStackScreenProps<"AllTransactions">>> =
   observer(function AllTransactionsScreen() {
+    const { colors } = useTheme()
+
     return (
-      <Screen style={$root} preset="scroll">
-        <Header titleStyle={$headerTitle} title="AllTransactions" />
+      <Screen style={$root(colors)} preset="scroll">
+        <Header titleStyle={$headerTitle} title="All Transactions" />
       </Screen>
     )
   })
 
-const $root: ViewStyle = {
-  flex: 1,
+function $root(colors) {
+  const $root: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.background,
+  }
+  return $root
 }
-
 const $headerTitle: TextStyle = {
   fontFamily: typography.fonts.montserrat.semiBold,
 }

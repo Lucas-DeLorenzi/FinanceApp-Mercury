@@ -5,19 +5,27 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Header, Screen } from "../components"
 import { typography } from "../theme"
+import { useTheme } from "@react-navigation/native"
 
 export const DashBoardScreen: FC<StackScreenProps<AppStackScreenProps<"DashBoard">>> = observer(
   function DashBoardScreen() {
+
+    const { colors } = useTheme()
+
     return (
-      <Screen style={$root} preset="scroll">
+      <Screen style={$root(colors)} preset="scroll">
         <Header titleStyle={$headerTitle} title="Dashboard" />
       </Screen>
     )
   },
 )
 
-const $root: ViewStyle = {
-  flex: 1,
+function $root(colors) {
+  const $root: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.background,
+  }
+  return $root
 }
 
 const $headerTitle: TextStyle = {
