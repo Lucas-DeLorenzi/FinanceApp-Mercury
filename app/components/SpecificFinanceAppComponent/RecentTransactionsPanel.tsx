@@ -6,7 +6,7 @@ import { Text } from "../Text"
 import { Panel, PanelLayoutHeader, PanelLayoutMain } from "../PanelLayout"
 import { Button } from "../Button"
 import { Icon } from "../Icon"
-import { useTheme } from "@react-navigation/native"
+import { useNavigation, useTheme } from "@react-navigation/native"
 import { Transaction } from "./Transaction"
 
 const SCREEN_WIDTH = Dimensions.get("window").width
@@ -22,6 +22,7 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
   props: RecentTransactionsPanelProps,
 ) {
   const { colors } = useTheme()
+  const navigation = useNavigation()
 
   const { style, transactionsData } = props
   const $styles = [$panelContainer(colors), style]
@@ -52,6 +53,12 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
             isBorderBottomActive={index !== transactionsData.length - 1}
           />
         ))}
+        <Button
+          text="View all transactions"
+          style={$mainContainerButton}
+          textStyle={$mainContainerButtonText}
+          onPress={() => navigation.navigate("AllTransactions")}
+        />
       </PanelLayoutMain>
     </Panel>
   )
@@ -59,9 +66,9 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
 
 function $panelContainer(colors) {
   const $container: ViewStyle = {
-    flex:1,
+    flex: 1,
     minHeight: "20%",
-    width:PANEL_WIDTH,
+    width: PANEL_WIDTH,
     marginVertical: spacing.small,
     paddingHorizontal: spacing.extraMedium,
     paddingTop: spacing.extraMedium,
@@ -73,7 +80,7 @@ function $panelContainer(colors) {
 }
 
 const $contentContainerStyle: ViewStyle = {
-  maxWidth:"100%",
+  maxWidth: "100%",
 }
 
 const $header: ViewStyle = {
@@ -118,4 +125,13 @@ const $headerButtonPressed: ViewStyle = {
 const $panelLayoutMain: ViewStyle = {
   flexDirection: "column",
   marginVertical: spacing.extraMedium,
+}
+
+const $mainContainerButton: ViewStyle = {
+  marginBottom: spacing.extraSmall,
+  borderRadius: 25,
+}
+
+const $mainContainerButtonText: TextStyle = {
+  fontSize: 12,
 }
