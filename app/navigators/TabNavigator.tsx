@@ -9,7 +9,7 @@ import { colors as themeColors } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
 const SCREEN_HEIGHT = Dimensions.get("window").height
-const SCREEN_MARGIN_BOTTOM = SCREEN_HEIGHT * 0.12
+const SCREEN_MARGIN_BOTTOM = SCREEN_HEIGHT * 0.09
 
 export type DemoTabParamList = {
   Dashboards: undefined
