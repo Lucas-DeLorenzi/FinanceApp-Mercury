@@ -12,7 +12,7 @@ import { Loading } from "../components/Loading"
 
 export const AccountHistoryScreen: FC<StackScreenProps<AppStackScreenProps<"AccountHistory">>> =
   observer(function AccountHistoryScreen() {
-    const { colors } = useTheme()
+    const theme = useTheme()
     const [accounts, setAccounts] = useState<Array<Account>>()
     const navigation = useNavigation()
 
@@ -21,7 +21,7 @@ export const AccountHistoryScreen: FC<StackScreenProps<AppStackScreenProps<"Acco
     }, [])
 
     return (
-      <Screen style={$root(colors)} preset="auto" contentContainerStyle={$screenContainer}>
+      <Screen style={$root(theme)} preset="auto" contentContainerStyle={$screenContainer}>
         <Header
           titleStyle={$headerTitle}
           title="Account History"
@@ -40,10 +40,10 @@ export const AccountHistoryScreen: FC<StackScreenProps<AppStackScreenProps<"Acco
     )
   })
 
-function $root(colors) {
+function $root(theme) {
   const $root: ViewStyle = {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background,
   }
   return $root
 }

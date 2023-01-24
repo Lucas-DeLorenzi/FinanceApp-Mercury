@@ -17,14 +17,14 @@ export const AccountCard = observer(function AccountCard({
   accountData,
   cardWidth,
 }: AccountCardProps) {
-  const { colors, dark } = useTheme()
+  const theme = useTheme()
 
   return (
-    <SliderCard style={$sliderCardContainer(colors, cardWidth)}>
+    <SliderCard style={$sliderCardContainer(theme, cardWidth)}>
       <SliderCardHeader style={$cardContainerHeader}>
         <View>
-          <Text text="Current Account" preset="bold" style={$headerTitle(colors)} />
-          <Text text={accountData.accountId} preset="bold" style={$headerSubtitle(colors, dark)} />
+          <Text text="Current Account" preset="bold" style={$headerTitle(theme)} />
+          <Text text={accountData.accountId} preset="bold" style={$headerSubtitle(theme)} />
         </View>
         <Button preset="default" style={$cardButton} textStyle={$text} onPress={() => null}>
           <Icon icon="dots" />
@@ -41,29 +41,29 @@ export const AccountCard = observer(function AccountCard({
         <Button
           text="USD"
           preset="currencyButton"
-          style={$cardContainerMainButton(colors)}
-          textStyle={$cardContainerMainButtonText(dark)}
+          style={$cardContainerMainButton(theme)}
+          textStyle={$cardContainerMainButtonText(theme)}
         />
         <Button
           text="GBP"
           preset="currencyButton"
-          style={$cardContainerMainButton(colors)}
-          textStyle={$cardContainerMainButtonText(dark)}
+          style={$cardContainerMainButton(theme)}
+          textStyle={$cardContainerMainButtonText(theme)}
         />
       </SliderCardMain>
 
       <SliderCardFooter style={$cardContainerFooter}>
-        <Text text={accountData.balance.euro} style={$footerTitle(colors)} />
-        <Text text="Current balance" style={$footerSubtitle(colors)} />
+        <Text text={accountData.balance.euro} style={$footerTitle(theme)} />
+        <Text text="Current balance" style={$footerSubtitle(theme)} />
       </SliderCardFooter>
     </SliderCard>
   )
 })
 
-function $sliderCardContainer(colors, cardWidth) {
+function $sliderCardContainer(theme, cardWidth) {
   const $sliderCardContainer: ViewStyle = {
     width: cardWidth,
-    backgroundColor: colors.card,
+    backgroundColor: theme.colors.card,
   }
   return [$cardContainer, $sliderCardContainer]
 }
@@ -95,9 +95,9 @@ const $text: TextStyle = {
   textAlignVertical: "center",
 }
 
-function $headerTitle(colors) {
+function $headerTitle(theme) {
   const $headerTitle: TextStyle = {
-    color: colors.text,
+    color: theme.colors.text,
     fontFamily: typography.fonts.montserrat.bold,
     fontSize: 22,
     lineHeight: 26,
@@ -105,9 +105,9 @@ function $headerTitle(colors) {
   return $headerTitle
 }
 
-function $headerSubtitle(colors, dark) {
+function $headerSubtitle(theme) {
   const $headerSubtitle: TextStyle = {
-    color: dark ? themeColors.palette.darkGrey100 : colors.text,
+    color: theme.dark ? themeColors.palette.darkGrey100 : theme.colors.text,
     fontFamily: typography.fonts.montserrat.semiBold,
     fontSize: 12,
     lineHeight: 16,
@@ -129,16 +129,16 @@ const $cardContainerMainButtonPressed: ViewStyle = {
   backgroundColor: themeColors.background,
 }
 
-function $cardContainerMainButton(colors) {
+function $cardContainerMainButton(theme) {
   const $cardContainerMainButton: ViewStyle = {
-    backgroundColor: colors.card,
+    backgroundColor: theme.colors.card,
   }
   return $cardContainerMainButton
 }
 
-function $cardContainerMainButtonText(dark) {
+function $cardContainerMainButtonText(theme) {
   const $cardContainerMainButtonText: TextStyle = {
-    color: dark ? themeColors.palette.darkGrey100 : themeColors.palette.dark100,
+    color: theme.dark ? themeColors.palette.darkGrey100 : themeColors.palette.dark100,
   }
   return $cardContainerMainButtonText
 }
@@ -150,9 +150,9 @@ const $cardContainerFooter: ViewStyle = {
   width: "100%",
 }
 
-function $footerTitle(colors) {
+function $footerTitle(theme) {
   const $footerTitle: TextStyle = {
-    color: colors.text,
+    color: theme.colors.text,
     fontFamily: typography.fonts.montserrat.bold,
     fontSize: 34,
     lineHeight: 38,
@@ -160,9 +160,9 @@ function $footerTitle(colors) {
   return $footerTitle
 }
 
-function $footerSubtitle(colors) {
+function $footerSubtitle(theme) {
   const $footerSubtitle: TextStyle = {
-    color: colors.text,
+    color: theme.colors.text,
     fontFamily: typography.fonts.montserrat.normal,
     fontSize: 15,
     lineHeight: 18,

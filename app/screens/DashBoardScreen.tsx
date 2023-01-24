@@ -10,20 +10,20 @@ import { useTheme } from "@react-navigation/native"
 export const DashBoardScreen: FC<StackScreenProps<AppStackScreenProps<"DashBoard">>> = observer(
   function DashBoardScreen() {
 
-    const { colors } = useTheme()
+    const theme = useTheme()
 
     return (
-      <Screen style={$root(colors)} preset="scroll">
+      <Screen style={$root(theme)} preset="scroll">
         <Header titleStyle={$headerTitle} title="Dashboard" />
       </Screen>
     )
   },
 )
 
-function $root(colors) {
+function $root(theme) {
   const $root: ViewStyle = {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background,
   }
   return $root
 }

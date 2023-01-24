@@ -27,7 +27,7 @@ const Tab = createBottomTabNavigator<DemoTabParamList>()
 
 export function TabNavigator() {
   const { bottom } = useSafeAreaInsets()
-  const { colors } = useTheme()
+  const theme = useTheme()
 
   return (
     <Tab.Navigator
@@ -35,7 +35,7 @@ export function TabNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
-        tabBarStyle: [$tabBar(bottom, colors)],
+        tabBarStyle: [$tabBar(bottom, theme)],
         tabBarShowLabel: false,
       }}
     >
@@ -82,13 +82,13 @@ export function TabNavigator() {
   )
 }
 
-function $tabBar(bottom, colors) {
+function $tabBar(bottom, theme) {
   const $tabBar: ViewStyle = {
     height: bottom + SCREEN_MARGIN_BOTTOM,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    backgroundColor: colors.card,
-    borderTopColor: colors.transparent,
+    backgroundColor: theme.colors.card,
+    borderTopColor: theme.colors.transparent,
   }
   return $tabBar
 }

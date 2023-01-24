@@ -22,7 +22,7 @@ export interface TransactionProps {
 }
 
 export const Transaction = observer(function Transaction(props: TransactionProps) {
-  const { dark, colors } = useTheme()
+  const theme = useTheme()
   const { style, transactionData, isBorderBottomActive = true } = props
   const $styles = [$transactionContainer, style]
 
@@ -31,14 +31,14 @@ export const Transaction = observer(function Transaction(props: TransactionProps
       <View style={$iconContainer}>
         <Icon icon={transactionData.purpose} />
       </View>
-      <View style={$textContainer(dark, isBorderBottomActive)}>
+      <View style={$textContainer(theme, isBorderBottomActive)}>
         <View style={$leftContent}>
-          <Text text={transactionData.name} style={$nameText(colors)} />
-          <Text text={transactionData.date} style={$subtitleText(dark)} />
+          <Text text={transactionData.name} style={$nameText(theme)} />
+          <Text text={transactionData.date} style={$subtitleText(theme)} />
         </View>
         <View style={$rightContent}>
           <Text text={transactionData.amount} style={$amountText(transactionData.isPositive)} />
-          <Text text={transactionData.paymentType} style={$subtitleText(dark)} />
+          <Text text={transactionData.paymentType} style={$subtitleText(theme)} />
         </View>
       </View>
     </View>
@@ -63,7 +63,7 @@ const $iconContainer: ViewStyle = {
   backgroundColor: themeColors.palette.orange100,
 }
 
-function $textContainer(dark, isBorderBottomActive) {
+function $textContainer(theme, isBorderBottomActive) {
   const $textContainer: ViewStyle = {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -71,7 +71,7 @@ function $textContainer(dark, isBorderBottomActive) {
     width: "85%",
     height: "100%",
     borderBottomWidth: isBorderBottomActive ? 1 : 0,
-    borderBottomColor: dark ? themeColors.palette.darkGrey100 : themeColors.palette.lightGrey200,
+    borderBottomColor: theme.dark ? themeColors.palette.darkGrey100 : themeColors.palette.lightGrey200,
   }
   return $textContainer
 }
@@ -87,19 +87,19 @@ const $titleText: TextStyle = {
   lineHeight: 14,
 }
 
-function $subtitleText(dark) {
+function $subtitleText(theme) {
   const $subtitleText: TextStyle = {
     fontFamily: typography.fonts.montserrat.semiBold,
     fontSize: 11,
     lineHeight: 13,
-    color: dark ? themeColors.palette.darkGrey100 : themeColors.palette.lightGrey100,
+    color: theme.dark ? themeColors.palette.darkGrey100 : themeColors.palette.lightGrey100,
   }
   return $subtitleText
 }
 
-function $nameText(colors) {
+function $nameText(theme) {
   const $nameText: TextStyle = {
-    color: colors.text,
+    color: theme.colors.text,
   }
   return [$nameText, $titleText]
 }

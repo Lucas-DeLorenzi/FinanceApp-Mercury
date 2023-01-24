@@ -21,11 +21,11 @@ export interface RecentTransactionsPanelProps {
 export const RecentTransactionsPanel = observer(function RecentTransactionsPanel(
   props: RecentTransactionsPanelProps,
 ) {
-  const { colors } = useTheme()
+  const theme = useTheme()
   const navigation = useNavigation()
 
   const { style, transactionsData } = props
-  const $styles = [$panelContainer(colors), style]
+  const $styles = [$panelContainer(theme), style]
 
   return (
     <Panel
@@ -34,7 +34,7 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
       showsVerticalScrollIndicator={false}
     >
       <PanelLayoutHeader style={$header}>
-        <Text text="Recent transactions" style={$headerText(colors)} />
+        <Text text="Recent transactions" style={$headerText(theme)} />
         <Button
           preset="default"
           style={$headerButton}
@@ -64,7 +64,7 @@ export const RecentTransactionsPanel = observer(function RecentTransactionsPanel
   )
 })
 
-function $panelContainer(colors) {
+function $panelContainer(theme) {
   const $container: ViewStyle = {
     flex: 1,
     minHeight: "20%",
@@ -72,8 +72,8 @@ function $panelContainer(colors) {
     marginVertical: spacing.small,
     paddingHorizontal: spacing.extraMedium,
     paddingTop: spacing.extraMedium,
-    backgroundColor: colors.card,
-    borderColor: colors.card,
+    backgroundColor: theme.colors.card,
+    borderColor: theme.colors.card,
     borderRadius: 30,
   }
   return $container
@@ -89,10 +89,10 @@ const $header: ViewStyle = {
   maxHeight: 30,
 }
 
-function $headerText(colors) {
+function $headerText(theme) {
   const $headerText: TextStyle = {
     fontSize: 17,
-    color: colors.text,
+    color: theme.colors.text,
     fontFamily: typography.fonts.montserrat.semiBold,
   }
   return $headerText
