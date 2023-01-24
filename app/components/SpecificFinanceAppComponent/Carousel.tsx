@@ -62,14 +62,10 @@ export const Carousel = observer(function Carousel(props: CarouselProps) {
 
 const $carouselContainer: ViewStyle={
   flex:1,
-  paddingHorizontal: spacing.micro,
-  marginRight: spacing.tiny,
-
 }
 
 const $cardsContainer: ViewStyle = {
   paddingHorizontal: spacing.micro,
-  marginRight: spacing.tiny,
 }
 
 const $pagination: ViewStyle = {
